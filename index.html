@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Dark Clinic Medical | Intimate Prescription</title>
+    <script src="https://cdn.jsdelivr.net/npm/dom-to-image-more@3.4.0/dist/dom-to-image-more.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="top-controls">
+    <button class="btn-download" id="downloadBtn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download PNG
+    </button>
+    <button class="btn-download" id="printBtn" style="background: transparent; border-color: rgba(201,168,76,0.3); color: rgba(201,168,76,0.6);">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Print / Save PDF
+    </button>
+</div>
+
+<!-- Floating hearts container (outside capture area) -->
+<div id="heartsContainer" aria-hidden="true"></div>
+
+<div class="rx-card" id="rxCapture">
+
+    <!-- Left dark stripe -->
+    <div class="left-stripe">
+        <div class="stripe-text">Dark Clinic Medical &nbsp;·&nbsp; Est. MMXXV</div>
+    </div>
+
+    <!-- Form body -->
+    <div class="form-body">
+        <!-- Corner ornaments -->
+        <div class="corner corner-tl">❧</div>
+        <div class="corner corner-tr">❧</div>
+        <div class="corner corner-bl">❧</div>
+        <div class="corner corner-br">❧</div>
+
+        <!-- Header -->
+        <div class="rx-header">
+            <div class="clinic-name-block">
+                <div class="rx-symbol">Vondo</div>
+                <div class="clinic-name">Dark Clinic Medical</div>
+                <div class="clinic-subtitle">where love meets science — prescription of the heart 💛</div>
+            </div>
+            <div class="header-badge">
+                <span class="badge-label">Certified Soul Care</span>
+                <div class="badge-seal">
+                    <span>DCM</span>
+                    <span>✦</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="gold-rule-double">
+            <div class="r1"></div>
+            <div class="r2"></div>
+        </div>
+
+        <!-- Patient fields -->
+        <div class="fields-section">
+            <div class="field-row">
+                <div class="field-group" style="flex: 2;">
+                    <label class="field-label" for="patientName">💌 Patient Name</label>
+                    <input type="text" id="patientName" class="field-input" placeholder="your person's name..." autocomplete="off">
+                </div>
+                <div class="field-group">
+                    <label class="field-label" for="recordDate">🗓 Date of Affection</label>
+                    <input type="text" id="recordDate" class="field-input" placeholder="YYYY-MM-DD" autocomplete="off">
+                </div>
+            </div>
+
+            <div class="field-row-3">
+                <div class="field-group">
+                    <label class="field-label" for="age">Age</label>
+                    <input type="text" id="age" class="field-input" placeholder="years young" autocomplete="off">
+                </div>
+                <div class="field-group">
+                    <label class="field-label" for="gender">Gender</label>
+                    <input type="text" id="gender" class="field-input" placeholder="energy / identity" autocomplete="off">
+                </div>
+                <div class="field-group">
+                    <label class="field-label" for="weight">Weight</label>
+                    <input type="text" id="weight" class="field-input" placeholder="kg · lbs" autocomplete="off">
+                </div>
+            </div>
+        </div>
+
+        <hr class="section-divider">
+
+        <!-- Ornamental section break -->
+        <div class="ornament-divider" aria-hidden="true">
+            <div class="od-line"></div>
+            <span class="od-center">✦ ♡ ✦</span>
+            <div class="od-line"></div>
+        </div>
+
+        <!-- Heartbeat line -->
+        <div class="heartbeat-line" aria-hidden="true">
+            <svg viewBox="0 0 400 30" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                <polyline points="0,15 60,15 75,5 85,25 95,2 105,28 115,15 175,15 195,8 215,15 400,15"
+                    fill="none" stroke="url(#hbGrad)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                <defs>
+                    <linearGradient id="hbGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="transparent"/>
+                        <stop offset="25%" stop-color="#c9a84c" stop-opacity="0.6"/>
+                        <stop offset="50%" stop-color="#e8cf80" stop-opacity="0.9"/>
+                        <stop offset="75%" stop-color="#c9a84c" stop-opacity="0.6"/>
+                        <stop offset="100%" stop-color="transparent"/>
+                    </linearGradient>
+                </defs>
+            </svg>
+        </div>
+
+        <!-- Prescription zone: label + columns + remarks, stretches to fill space -->
+        <div class="prescription-zone">
+            <!-- corner ticks -->
+            <div class="pz-tick pz-tl"></div>
+            <div class="pz-tick pz-tr"></div>
+            <div class="pz-tick pz-bl"></div>
+            <div class="pz-tick pz-br"></div>
+
+            <!-- Diagnosis label -->
+            <div class="diagnosis-header">
+                <span class="diagnosis-tag">♡ Clinical Prescription</span>
+                <div class="diagnosis-rule"></div>
+                <span class="pz-rxno">Prescription No.&nbsp;<input type="text" id="rxNo" class="rxno-input" placeholder="001" maxlength="6" autocomplete="off"></span>
+            </div>
+
+            <!-- Medicine + Dosage dual column -->
+            <div class="diagnosis-dual">
+                <div class="med-column">
+                    <div class="diag-label">
+                        <span class="diag-label-icon">💊</span>
+                        Medicine Name
+                    </div>
+                    <textarea id="medicineName" class="diag-textarea" placeholder="e.g., Vitamin Cuddle, Herbal Embrace" autocomplete="off"></textarea>
+                </div>
+                <div class="dosage-column">
+                    <div class="diag-label">
+                        <span class="diag-label-icon">⏱</span>
+                        Dosage &amp; Frequency
+                    </div>
+                    <textarea id="dosageFreq" class="diag-textarea" placeholder="e.g., 3 times daily with warm hugs" autocomplete="off"></textarea>
+                </div>
+            </div>
+
+            <!-- Remarks strip -->
+            <div class="remarks-strip">
+                <span class="remarks-label">✎ Remarks</span>
+                <input type="text" id="remarks" class="remarks-input" placeholder="additional care notes, warnings, or sweet words…" autocomplete="off">
+            </div>
+        </div>
+
+        <!-- Signature -->
+        <div class="signature-section">
+            <div class="wax-seal" aria-hidden="true">
+                <span class="wax-seal-inner">DCM<br><span style="font-size:0.5em;letter-spacing:1px;">♡</span></span>
+            </div>
+            <div class="sig-block">
+                <span class="sig-label-text">✦ Prescribed with Love ✦</span>
+                <input type="text" id="signatureField" class="sig-input" placeholder="signed by your person 💛" autocomplete="off">
+                <div class="sig-oath">sealed with warmth — a promise written in ink & heart</div>
+            </div>
+            <div class="sig-date-block">
+                <span class="sig-label-text">Sig. Date</span>
+                <input type="text" id="sigDate" class="field-input" placeholder="YYYY-MM-DD" autocomplete="off" style="font-size:1.1rem;">
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="rx-footer">
+            <span class="footer-left">where diagnosis meets devotion — Dark Clinic Medical ♡</span>
+            <span class="footer-right">take daily. no skipping. 🌙</span>
+        </div>
+
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
