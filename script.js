@@ -45,11 +45,43 @@
         downloadBtn.innerHTML = 'Generating…';
         downloadBtn.disabled = true;
 
+        // ── Lock flex heights so dom-to-image captures correct layout ──
+        const pZone = capture.querySelector('.prescription-zone');
+        const dDual = capture.querySelector('.diagnosis-dual');
+        const medCol = capture.querySelector('.med-column');
+        const dosCol = capture.querySelector('.dosage-column');
+        const medTA = capture.querySelector('#medicineName');
+        const dosTA = capture.querySelector('#dosageFreq');
+
+        const saved = {};
+        function lockEl(el, prop, val) {
+            if (!el) return;
+            saved[prop] = el.style[prop];
+            el.style[prop] = val;
+        }
+
+        // Snapshot computed heights before locking
+        const pZoneH = pZone ? pZone.offsetHeight + 'px' : null;
+        const dDualH = dDual ? dDual.offsetHeight + 'px' : null;
+        const medH   = medTA  ? medTA.offsetHeight  + 'px' : null;
+        const dosH   = dosTA  ? dosTA.offsetHeight  + 'px' : null;
+
+        if (pZone)  { pZone.style.flex = 'none'; pZone.style.height = pZoneH; }
+        if (dDual)  { dDual.style.flex = 'none'; dDual.style.height = dDualH; dDual.style.flexDirection = 'row'; }
+        if (medCol) { medCol.style.width = '50%'; medCol.style.flex = 'none'; }
+        if (dosCol) { dosCol.style.width = '50%'; dosCol.style.flex = 'none'; }
+        if (medTA)  { medTA.style.flex = 'none'; medTA.style.height = medH; }
+        if (dosTA)  { dosTA.style.flex = 'none'; dosTA.style.height = dosH; }
+
+        // Pause CSS animations during capture
+        capture.style.animation = 'none';
+        capture.querySelectorAll('*').forEach(el => { el.style.animationPlayState = 'paused'; });
+
         try {
-            // Use scale option directly — avoids layout shift from CSS transform
+            const isDarkCard = capture.classList.contains('dark-card');
             const dataUrl = await domtoimage.toPng(capture, {
                 scale: 2.5,
-                bgcolor: '#faf7f0',
+                bgcolor: isDarkCard ? '#1c1710' : '#faf7f0',
                 quality: 1,
             });
 
@@ -62,6 +94,16 @@
             console.error('PNG Error:', err);
             alert('Could not generate PNG.\n\nUse the Print / Save PDF button as alternative.\n\nError: ' + err.message);
         } finally {
+            // Restore styles
+            if (pZone)  { pZone.style.flex = ''; pZone.style.height = ''; }
+            if (dDual)  { dDual.style.flex = ''; dDual.style.height = ''; dDual.style.flexDirection = ''; }
+            if (medCol) { medCol.style.width = ''; medCol.style.flex = ''; }
+            if (dosCol) { dosCol.style.width = ''; dosCol.style.flex = ''; }
+            if (medTA)  { medTA.style.flex = ''; medTA.style.height = medH; }
+            if (dosTA)  { dosTA.style.flex = ''; dosTA.style.height = dosH; }
+            capture.style.animation = '';
+            capture.querySelectorAll('*').forEach(el => { el.style.animationPlayState = ''; });
+
             downloadBtn.innerHTML = originalHTML;
             downloadBtn.disabled = false;
         }
@@ -73,6 +115,22 @@
     const printBtn = document.getElementById('printBtn');
     if (printBtn) {
         printBtn.addEventListener('click', () => window.print());
+    }
+
+    // ─── Theme toggle (card dark / light) ────────────────────────────
+    const themeToggle = document.getElementById('themeToggle');
+    const savedCard = localStorage.getItem('dcm-card-theme');
+    if (savedCard === 'dark' && capture) {
+        capture.classList.add('dark-card');
+        if (themeToggle) themeToggle.classList.add('active');
+    }
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const isDark = capture.classList.toggle('dark-card');
+            themeToggle.classList.toggle('active', isDark);
+            localStorage.setItem('dcm-card-theme', isDark ? 'dark' : 'light');
+        });
     }
 
     // ─── Floating hearts ─────────────────────────────────────────────

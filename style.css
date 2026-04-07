@@ -1,8 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Caveat:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
-
 @font-face {
     font-family: 'Lipishree';
-    src: url('/Lipishree.ttf') format('truetype');
+    src: url('./Lipishree.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
     unicode-range: U+0980-U+09FF, U+200C-U+200D, U+20B9, U+25CC, U+A8F1;
@@ -30,40 +28,287 @@
 }
 
 body {
-    background: var(--dark);
+    background: #0b0906;
     background-image:
-        radial-gradient(ellipse at 20% 0%, rgba(201, 168, 76, 0.06) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 100%, rgba(201, 168, 76, 0.04) 0%, transparent 50%);
+        radial-gradient(ellipse at 50% -10%, rgba(201,168,76,0.10) 0%, transparent 55%),
+        radial-gradient(ellipse at 15% 60%,  rgba(201,168,76,0.04) 0%, transparent 45%),
+        radial-gradient(ellipse at 85% 80%,  rgba(201,168,76,0.04) 0%, transparent 45%);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2.5rem 1rem 3rem;
+    padding: 2rem 1rem 3rem;
     font-family: 'Inter', sans-serif;
 }
+
+/* ─── PAGE HEADER ─── */
+.page-header {
+    text-align: center;
+    margin-bottom: 1.8rem;
+    animation: fadeSlideUp 0.7s ease both;
+}
+.ph-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.5rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(201,168,76,0.45);
+    margin-bottom: 0.5rem;
+}
+.ph-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 4vw, 2.2rem);
+    font-weight: 700;
+    color: var(--gold-light);
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+    background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-light) 50%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.45rem;
+}
+.ph-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.58rem;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(201,168,76,0.35);
+}
+
+/* ─── PAGE FOOTER ─── */
+.page-footer {
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.55rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(201,168,76,0.25);
+    animation: fadeSlideUp 0.7s ease both;
+    animation-delay: 0.8s;
+}
+.pf-dot { color: rgba(201,168,76,0.15); font-size: 1rem; line-height: 0; }
+@media print { .page-header, .page-footer { display: none !important; } }
 
 
 /* ─── TOP CONTROLS ─── */
 .top-controls {
     display: flex;
-    gap: 1rem;
-    margin-bottom: 2rem;
+    gap: 0.85rem;
+    margin-bottom: 1.8rem;
     align-items: center;
     flex-wrap: wrap;
     justify-content: center;
 }
 
+/* ─── THEME TOGGLE ─── */
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: transparent;
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 50px;
+    padding: 0.4rem 0.75rem;
+    cursor: pointer;
+    transition: border-color 0.3s, background 0.3s;
+}
+.theme-toggle:hover {
+    border-color: rgba(201,168,76,0.45);
+    background: rgba(201,168,76,0.04);
+}
+.tt-icon {
+    font-size: 0.7rem;
+    line-height: 1;
+    user-select: none;
+    opacity: 0.7;
+}
+.tt-track {
+    width: 34px;
+    height: 18px;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 10px;
+    position: relative;
+    transition: background 0.35s, border-color 0.35s;
+}
+.tt-thumb {
+    width: 12px;
+    height: 12px;
+    background: var(--gold);
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1), background 0.3s;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+}
+
+
+/* ══════════════════════════════════════════════
+   ✦ DARK CARD THEME — card goes noir
+   Toggle adds .dark-card to .rx-card
+══════════════════════════════════════════════ */
+.rx-card.dark-card {
+    background: #1c1710;
+    box-shadow:
+        0 0 0 1px rgba(201,168,76,0.45),
+        0 2px 0 0 rgba(201,168,76,0.2),
+        0 30px 60px -10px rgba(0,0,0,0.95),
+        0 60px 100px -20px rgba(0,0,0,0.7),
+        0 0 100px rgba(201,168,76,0.10),
+        0 0 240px rgba(201,168,76,0.06);
+    transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+/* Left stripe — darker */
+.rx-card.dark-card .left-stripe {
+    background: #0f0c08;
+}
+/* Watermark — slightly brighter on dark */
+.rx-card.dark-card .form-body::before {
+    color: rgba(201,168,76,0.055);
+}
+/* Header text */
+.rx-card.dark-card .clinic-name {
+    color: #f0e8d5;
+}
+.rx-card.dark-card .clinic-subtitle {
+    color: rgba(201,168,76,0.4);
+}
+.rx-card.dark-card .badge-label {
+    color: rgba(201,168,76,0.4);
+}
+/* Field labels */
+.rx-card.dark-card .field-label {
+    color: rgba(201,168,76,0.45);
+}
+/* Field inputs */
+.rx-card.dark-card .field-input {
+    color: #ede0c4;
+    border-bottom-color: rgba(201,168,76,0.2);
+}
+.rx-card.dark-card .field-input::placeholder {
+    color: rgba(201,168,76,0.22);
+}
+.rx-card.dark-card .field-input:focus {
+    border-bottom-color: var(--gold);
+    background: rgba(201,168,76,0.03);
+}
+/* Section & ornament dividers */
+.rx-card.dark-card .section-divider {
+    background: linear-gradient(90deg, rgba(201,168,76,0.12), rgba(201,168,76,0.06), transparent);
+}
+.rx-card.dark-card .od-line {
+    background: linear-gradient(90deg, transparent, rgba(201,168,76,0.22), transparent);
+}
+.rx-card.dark-card .od-center {
+    color: rgba(201,168,76,0.38);
+}
+/* Prescription zone box */
+.rx-card.dark-card .prescription-zone {
+    border-color: rgba(201,168,76,0.2);
+    background: rgba(201,168,76,0.015);
+}
+.rx-card.dark-card .pz-tick {
+    border-color: rgba(201,168,76,0.45);
+}
+/* Diagnosis header + labels */
+.rx-card.dark-card .diag-label {
+    color: rgba(201,168,76,0.45);
+}
+.rx-card.dark-card .dosage-column {
+    border-left-color: rgba(201,168,76,0.18);
+}
+/* Textareas */
+.rx-card.dark-card .diag-textarea {
+    color: #ede0c4;
+    border-bottom-color: rgba(201,168,76,0.15);
+}
+.rx-card.dark-card .diag-textarea::placeholder {
+    color: rgba(201,168,76,0.22);
+}
+.rx-card.dark-card .diag-textarea:focus {
+    border-bottom-color: var(--gold);
+    background: rgba(201,168,76,0.03);
+}
+/* Rx No input */
+.rx-card.dark-card .rxno-input {
+    color: #ede0c4;
+    border-bottom-color: rgba(201,168,76,0.18);
+}
+/* Remarks */
+.rx-card.dark-card .remarks-strip {
+    border-top-color: rgba(201,168,76,0.15);
+}
+.rx-card.dark-card .remarks-label {
+    color: rgba(201,168,76,0.45);
+}
+.rx-card.dark-card .remarks-input {
+    color: #ede0c4;
+    border-bottom-color: rgba(201,168,76,0.13);
+}
+.rx-card.dark-card .remarks-input::placeholder {
+    color: rgba(201,168,76,0.2);
+}
+.rx-card.dark-card .remarks-input:focus {
+    border-bottom-color: var(--gold);
+}
+/* Signature section */
+.rx-card.dark-card .signature-section {
+    border-top-color: rgba(201,168,76,0.22);
+}
+.rx-card.dark-card .sig-label-text {
+    color: rgba(201,168,76,0.45);
+}
+.rx-card.dark-card .sig-input {
+    color: #ede0c4;
+    border-bottom-color: rgba(201,168,76,0.18);
+}
+.rx-card.dark-card .sig-input:focus {
+    border-bottom-color: var(--gold);
+}
+.rx-card.dark-card .sig-oath {
+    color: rgba(201,168,76,0.3);
+}
+/* Footer bar */
+.rx-card.dark-card .rx-footer {
+    border-top-color: rgba(201,168,76,0.12);
+    color: rgba(201,168,76,0.32);
+}
+/* Corner ornaments — more visible */
+.rx-card.dark-card .corner {
+    color: var(--gold);
+    opacity: 0.22;
+}
+/* Stripe text */
+.rx-card.dark-card .stripe-text {
+    color: rgba(201,168,76,0.4);
+}
+
+/* Toggle thumb slides right when active (dark card) */
+.theme-toggle.active .tt-thumb {
+    transform: translateX(16px);
+    background: var(--gold-light);
+}
+.theme-toggle.active .tt-track {
+    background: rgba(201,168,76,0.18);
+    border-color: rgba(201,168,76,0.5);
+}
+
+@media print { .theme-toggle { display: none !important; } }
+
 .btn-download {
-    background: linear-gradient(135deg, #1e1a12 0%, #2e2516 100%);
-    border: 1px solid var(--gold);
+    border: none;
     padding: 0.85rem 2rem;
     border-radius: 4px;
-    font-weight: 500;
-    font-size: 0.8rem;
-    color: var(--gold-light);
+    font-weight: 600;
+    font-size: 0.72rem;
     cursor: pointer;
     font-family: 'Inter', sans-serif;
-    letter-spacing: 1.5px;
+    letter-spacing: 2px;
     text-transform: uppercase;
     transition: all 0.3s ease;
     display: inline-flex;
@@ -72,25 +317,40 @@ body {
     position: relative;
     overflow: hidden;
 }
-.btn-download::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, var(--gold-dark), transparent);
-    opacity: 0;
-    transition: opacity 0.3s;
+
+/* Primary — solid gold */
+.btn-primary {
+    background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 50%, var(--gold-light) 100%);
+    color: #1a1408;
+    box-shadow: 0 4px 20px rgba(201,168,76,0.35);
 }
-.btn-download:hover::before { opacity: 0.3; }
-.btn-download:hover {
-    border-color: var(--gold-light);
-    color: #fff;
-    transform: translateY(-1px);
-    box-shadow: 0 8px 24px rgba(201, 168, 76, 0.2);
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(201,168,76,0.45);
+    filter: brightness(1.08);
 }
+.btn-primary:active { transform: translateY(0); }
+
+/* Secondary — outlined */
+.btn-secondary {
+    background: transparent;
+    color: rgba(201,168,76,0.65);
+    border: 1px solid rgba(201,168,76,0.28);
+}
+.btn-secondary:hover {
+    background: rgba(201,168,76,0.06);
+    border-color: rgba(201,168,76,0.55);
+    color: var(--gold-light);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(201,168,76,0.12);
+}
+.btn-secondary:active { transform: translateY(0); }
+
 .btn-download:disabled {
-    opacity: 0.6;
+    opacity: 0.5;
     cursor: not-allowed;
-    transform: none;
+    transform: none !important;
+    filter: none !important;
 }
 
 /* ─── PRESCRIPTION CARD ─── */
@@ -101,9 +361,12 @@ body {
     position: relative;
     border-radius: 2px;
     box-shadow:
-        0 0 0 1px rgba(201, 168, 76, 0.3),
-        0 40px 80px -20px rgba(0,0,0,0.8),
-        0 0 120px rgba(201, 168, 76, 0.04);
+        0 0 0 1px rgba(201,168,76,0.35),
+        0 2px 0 0 rgba(201,168,76,0.15),
+        0 30px 60px -10px rgba(0,0,0,0.9),
+        0 60px 100px -20px rgba(0,0,0,0.6),
+        0 0 80px  rgba(201,168,76,0.07),
+        0 0 200px rgba(201,168,76,0.04);
     overflow: hidden;
     display: flex;
 }
@@ -296,7 +559,7 @@ body {
 }
 
 .field-input {
-    font-family: 'Caveat', 'Lipishree', cursive;
+    font-family: 'Caveat', 'Lipishree', 'Noto Sans Bengali', cursive;
     font-size: 1.2rem;
     font-weight: 500;
     color: var(--ink);
@@ -334,7 +597,7 @@ body {
     border: none;
     height: 1px;
     background: linear-gradient(90deg, rgba(100,80,55,0.15), rgba(100,80,55,0.08), transparent);
-    margin: 0 0 1.2rem;
+    margin: 0 0 0.5rem;
 }
 
 /* ─── ORNAMENT DIVIDER ─── */
@@ -342,7 +605,7 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    margin: 0.1rem 0 0.5rem;
+    margin: 0.2rem 0 0.3rem;
     position: relative;
     z-index: 1;
 }
@@ -434,7 +697,7 @@ body {
     flex-shrink: 0;
 }
 .remarks-input {
-    font-family: 'Caveat', 'Lipishree', cursive;
+    font-family: 'Caveat', 'Lipishree', 'Noto Sans Bengali', cursive;
     font-size: 0.9rem;
     color: var(--ink);
     background: transparent;
@@ -472,20 +735,27 @@ body {
 
 .diagnosis-dual {
     display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
     gap: 0;
     flex: 1;
     align-items: stretch;
     margin-bottom: 0;
+    min-height: 0;
 }
 
 .med-column {
-    flex: 1;
+    flex: 1 1 50%;
+    width: 50%;
+    min-width: 0;
     display: flex;
     flex-direction: column;
     padding-right: 1.2rem;
 }
 .dosage-column {
-    flex: 1;
+    flex: 1 1 50%;
+    width: 50%;
+    min-width: 0;
     display: flex;
     flex-direction: column;
     padding-left: 1.2rem;
@@ -510,7 +780,7 @@ body {
 }
 
 .diag-textarea {
-    font-family: 'Caveat', 'Lipishree', cursive;
+    font-family: 'Caveat', 'Lipishree', 'Noto Sans Bengali', cursive;
     font-size: 0.95rem;
     font-weight: 500;
     color: var(--ink);
@@ -568,7 +838,7 @@ body {
     display: block;
 }
 .sig-input {
-    font-family: 'Caveat', 'Lipishree', cursive;
+    font-family: 'Caveat', 'Lipishree', 'Noto Sans Bengali', cursive;
     font-size: 1.6rem;
     font-weight: 700;
     color: var(--ink);
@@ -787,8 +1057,8 @@ body {
 ═══════════════════════════════════════════ */
 .heartbeat-line {
     width: 100%;
-    height: 30px;
-    margin: 0.2rem 0 0.6rem;
+    height: 26px;
+    margin: 0 0 0.35rem;
 }
 .heartbeat-line svg {
     width: 100%;

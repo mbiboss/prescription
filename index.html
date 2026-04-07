@@ -5,16 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <title>Dark Clinic Medical | Intimate Prescription</title>
     <script src="https://cdn.jsdelivr.net/npm/dom-to-image-more@3.4.0/dist/dom-to-image-more.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&family=Noto+Sans+Bengali:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<header class="page-header">
+    <div class="ph-eyebrow">✦ &nbsp; Certified Soul Care &nbsp; ✦</div>
+    <h1 class="ph-title">Dark Clinic Medical</h1>
+    <p class="ph-sub">Fill the prescription &nbsp;·&nbsp; Download &nbsp;·&nbsp; Share with love</p>
+</header>
+
 <div class="top-controls">
-    <button class="btn-download" id="downloadBtn">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    <!-- Theme toggle -->
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode" title="Switch theme">
+        <span class="tt-icon">🌙</span>
+        <div class="tt-track"><div class="tt-thumb"></div></div>
+        <span class="tt-icon">☀</span>
+    </button>
+
+    <button class="btn-download btn-primary" id="downloadBtn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
         Download PNG
     </button>
-    <button class="btn-download" id="printBtn" style="background: transparent; border-color: rgba(201,168,76,0.3); color: rgba(201,168,76,0.6);">
+    <button class="btn-download btn-secondary" id="printBtn">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
         Print / Save PDF
     </button>
@@ -178,6 +194,12 @@
 
     </div>
 </div>
+
+<footer class="page-footer">
+    <span>made with ♡ for the one who matters most</span>
+    <span class="pf-dot">·</span>
+    <span>Dark Clinic Medical &nbsp;©&nbsp; MMXXV</span>
+</footer>
 
 <script src="script.js"></script>
 </body>
